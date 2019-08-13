@@ -3,8 +3,8 @@ from os import listdir
 from os.path import isfile, isdir, join
 
 
-# 指定要列出所有檔案的目錄
-mypath = "G:/我的雲端硬碟/03 Nextlink Product Team/04 Routine/02 AWS Billing/AWS Invoices (Molly)/EDP+SPP Invoices_201906"
+# 指定要讀取資料的位址（資料夾名稱）
+mypath = "June"
 
 # 取得所有檔案與子目錄名稱
 files = listdir(mypath)
@@ -24,8 +24,8 @@ print(inFileList)
 
 def mergePdf(inFileList, outFile):
     '''
-    合并文档
-    :param inFileList: 要合併文黨的 list
+    合併文件
+    :param inFileList: 要合併文件的 list
     :param outFile:    合併後的输出文件
     :return:
     '''
@@ -36,7 +36,7 @@ def mergePdf(inFileList, outFile):
         pageObj = pdfReader.getPage(0)
         pdfFileWriter.addPage(pageObj)
         """
-        # 獲取 pdf 共用多少页
+        # 上方僅限合併文件第一頁，若要其他頁數，可由下方程式碼修改
         page_count = pdf_input.getNumPages()
         print(page_count)
         for i in range(page_count):
@@ -46,4 +46,4 @@ def mergePdf(inFileList, outFile):
         pdfFileWriter.write(open(outFile, 'wb'))
 
 
-mergePdf(inFileList, 'merged.pdf')
+mergePdf(inFileList, 'merged.pdf') # 將合併後的文件取名為 merged.pdf
